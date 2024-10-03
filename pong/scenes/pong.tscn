@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://ciebqyadjm751"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_k1u21"]
+[ext_resource type="Texture2D" uid="uid://bpw0dtkwftjta" path="res://assets/paddleBlu.png" id="2_81010"]
+[ext_resource type="Texture2D" uid="uid://bxs73c1kj74hh" path="res://assets/paddleRed.png" id="3_5gq5i"]
+[ext_resource type="Script" path="res://scenes/player_2.gd" id="3_tiid5"]
+[ext_resource type="Script" path="res://scenes/rigid_body_2d.gd" id="5_6m0sr"]
+[ext_resource type="Texture2D" uid="uid://ci1mbjyvowdbk" path="res://assets/ballBlue.png" id="5_ke77b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jfgy4"]
+radius = 12.0
+height = 106.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fc62w"]
+radius = 22.0227
+
+[node name="Pong" type="Node2D"]
+
+[node name="player" type="StaticBody2D" parent="."]
+position = Vector2(15, 360)
+rotation = 1.5708
+script = ExtResource("1_k1u21")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+texture = ExtResource("2_81010")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jfgy4")
+debug_color = Color(0.929412, 0, 0.662745, 0.419608)
+
+[node name="player2" type="StaticBody2D" parent="."]
+position = Vector2(1265, 360.005)
+rotation = -3.14159
+script = ExtResource("3_tiid5")
+
+[node name="Sprite2D" type="Sprite2D" parent="player2"]
+rotation = 1.5708
+texture = ExtResource("3_5gq5i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player2"]
+rotation = 3.14159
+shape = SubResource("CapsuleShape2D_jfgy4")
+debug_color = Color(0.929412, 0, 0.662745, 0.419608)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(640, 360)
+script = ExtResource("5_6m0sr")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_ke77b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_fc62w")
+debug_color = Color(0.970866, 0.141028, 0.250143, 0.42)
